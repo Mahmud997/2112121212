@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Приглашение на Шақыру | Taklif Pro</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-color: #FAF8F5;
+      --card-bg: #FFFFFF;
+      --primary: #C5A059; /* Изысканный золотой */
+      --primary-hover: #B28D46;
+      --text-main: #2C2C2C;
+      --text-muted: #707070;
+      --border-color: #E8E2D8;
+      --shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px 10px;
+    }
+
+    .invite-container {
+      width: 100%;
+      max-width: 480px;
+      background-color: var(--card-bg);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--border-color);
+    }
+
+    /* Фоновая музыка - кнопка */
+    .music-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 100;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .music-btn.playing {
+      background: var(--primary);
+      color: #fff;
+      animation: spin 6s linear infinite;
+    }
+
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Шапка / Обложка */
+    .hero {
+      padding: 50px 20px 40px;
+      text-align: center;
+      background: linear-gradient(180deg, #FDFBF7 0%, #FAF8F5 100%);
+      border-bottom: 1px solid var(--border-color);
+      position: relative;
+    }
+
+    .ornament {
+      font-size: 24px;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    .subtitle {
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 11px;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .names {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.2;
+      margin-bottom: 15px;
+    }
+
+    .names span {
+      display: block;
+      font-size: 24px;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: var(--primary);
+      margin: 5px 0;
+    }
+
+    .event-type {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    /* Таймер */
+    .timer-section {
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 2px;
+      background-color: var(--primary);
+      margin: 8px auto 0;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .time-box {
+      background: #FAF8F5;
+      padding: 12px 8px;
+      border-radius: 10px;
+      min-width: 65px;
+      border: 1px solid var(--border-color);
+    }
+
+    .time-box .number {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--primary);
+      display: block;
+    }
+
+    .time-box .label {
+      font-size: 10px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* Информация о деталях */
+    .details-section {
+      padding: 20px;
+      background-color: #FDFBF7;
+    }
+
+    .detail-card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      text-align: center;
+      border: 1px solid var(--border-color);
+    }
+
+    .detail-card i {
+      font-size: 22px;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .detail-card h3 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      color: var(--text-main);
+    }
+
+    .detail-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .btn-map {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 8px 18px;
+      background-color: transparent;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+
+    .btn-map:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    /* Программа */
+    .program-section {
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .timeline {
+      margin-top: 20px;
+      position: relative;
+      padding-left: 20px;
+      text-align: left;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 5px;
+      bottom: 5px;
+      width: 2px;
+      background: var(--border-color);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 20px;
+      padding-left: 20px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -18px;
+      top: 4px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+
+    .timeline-time {
+      font-weight: 600;
+      color: var(--primary);
+      font-size: 14px;
+    }
+
+    .timeline-text {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Форма RSVP */
+    .rsvp-section {
+      padding: 30px 20px;
+      background-color: #FAF8F5;
+      text-align: center;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary);
+    }
+
+    .radio-group {
+      display: flex;
+      gap: 15px;
+      margin-top: 8px;
+    }
+
+    .radio-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 14px;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: 10px;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--primary-hover);
+    }
+
+    /* Подвал */
+    .footer {
+      padding: 25px 20px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-color);
+      background: #fff;
+    }
+
+    .footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Кнопка музыки -->
+  <button class="music-btn" id="musicToggle" title="Музыка">
+    <i class="fa-solid fa-music"></i>
+  </button>
+  <audio id="bgMusic" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="invite-container">
+    
+    <!-- Шапка -->
+    <header class="hero">
+      <div class="ornament"><i class="fa-solid fa-gem"></i></div>
+      <div class="subtitle">Тойға шақыру</div>
+      <h1 class="names">Азамат <span>&</span> Мадина</h1>
+      <div class="event-type">Үйлену тойы (Үйлену той)</div>
+    </header>
+
+    <!-- Таймер -->
+    <section class="timer-section">
+      <h2 class="section-title">Той күніне дейін</h2>
+      <div class="countdown" id="countdown">
+        <div class="time-box">
+          <span class="number" id="days">00</span>
+          <span class="label">Күн</span>
+        </div>
+        <div class="time-box">
+          <span class="number" id="hours">00</span>
+          <span class="label">Сағат</span>
+        </div>
+        <div class="time-box">
+          <span class="number" id="minutes">00</span>
+          <span class="label">Минут</span>
+        </div>
+        <div class="time-box">
+          <span class="number" id="seconds">00</span>
+          <span class="label">Секунд</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Детали мероприятия -->
+    <section class="details-section">
+      <div class="detail-card">
+        <i class="fa-regular fa-calendar-check"></i>
+        <h3>Күні мен уақыты</h3>
+        <p><strong>25 Тамыз 2026 жыл</strong></p>
+        <p>Қонақтардың жиналуы: 18:00</p>
+      </div>
+
+      <div class="detail-card">
+        <i class="fa-solid fa-location-dot"></i>
+        <h3>Мекен-жайы</h3>
+        <p><strong>"Rixos" Рестораны</strong></p>
+        <p>г. Алматы, пр. Достык, 50</p>
+        <a href="https://maps.google.com" target="_blank" class="btn-map"><i class="fa-solid fa-map-pin"></i> Картадан қарау</a>
+      </div>
+    </section>
+
+    <!-- Тайминг / Программа -->
+    <section class="program-section">
+      <h2 class="section-title">Той бағдарламасы</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-time">18:00</div>
+          <div class="timeline-text">Қонақтардың жиналуы & Ред ковер / Welcome Drink</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">19:00</div>
+          <div class="timeline-text">Шілдехана / Беташар / Салтанатты ашылуы</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">20:00</div>
+          <div class="timeline-text">Кешкі ас & Шоу бағдарлама</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">23:00</div>
+          <div class="timeline-text">Торт кесу & Естелік суреттер</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RSVP Форма -->
+    <section class="rsvp-section">
+      <h2 class="section-title">Қатысуды растау</h2>
+      <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 20px;">
+        Өтініш, 15 тамызға дейін қатысуыңызды растауыңызды сұраймыз!
+      </p>
+
+      <form id="rsvpForm">
+        <div class="form-group">
+          <label for="guestName">Аты-жөніңіз (Имя и Фамилия)</label>
+          <input type="text" id="guestName" class="form-control" placeholder="Мысалы: Арман & Айгүл" required>
+        </div>
+
+        <div class="form-group">
+          <label>Келесіз бе?</label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="attending" value="yes" checked> Иә, келемін
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="attending" value="no"> Өкінішке орай, келе алмаймын
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="guestsCount">Қонақтар саны</label>
+          <select id="guestsCount" class="form-control">
+            <option value="1">1 адам</option>
+            <option value="2">2 адам</option>
+            <option value="3+">3+ адам</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-submit">Жіберу / Отправить</button>
+      </form>
+    </section>
+
+    <!-- Подвал -->
+    <footer class="footer">
+      <p>Сіздерді күтеміз!</p>
+      <p style="margin-top: 8px;">Создано с помощью <a href="#">Taklif Pro</a></p>
+    </footer>
+
+  </div>
+
+  <!-- JS Скрипты -->
+  <script>
+    // Обратный отсчет (Дата: 25 Августа 2026)
+    const targetDate = new Date('August 25, 2026 18:00:00').getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        document.getElementById('days').innerText = days < 10 ? '0' + days : days;
+        document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
+        document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+        document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+      }
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Музыкальный плеер
+    const musicBtn = document.getElementById('musicToggle');
+    const audio = document.getElementById('bgMusic');
+
+    musicBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        musicBtn.classList.add('playing');
+      } else {
+        audio.pause();
+        musicBtn.classList.remove('playing');
+      }
+    });
+
+    // Обработка отправки формы
+    document.getElementById('rsvpForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('guestName').value;
+      alert(`Рахмет, ${name}! Сіздің жауабыңыз қабылданды.`);
+      document.getElementById('rsvpForm').reset();
+    });
+  </script>
+</body>
+</html>

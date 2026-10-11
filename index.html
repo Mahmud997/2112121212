@@ -1,129 +1,173 @@
- <!DOCTYPE html>
-<html lang="kk">
+<!DOCTYPE html>
+<html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Taklif Pro — Электрондық шақыру билеттері / Электронные пригласительные</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Kelshi — Электронные пригласительные</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,500;1,400&family=Great+Vibes&family=Marck+Script&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,500;1,400&family=Great+Vibes&family=Montserrat:wght@400;500;600;700&family=Philosopher:ital,wght@0,700;1,400&family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
 <style>
-:root{--gold:#c9a24b;--gold-d:#a67f2e;--ink:#1a1a2e;--bg:#fdf6ec;--accent:#c9a24b}
+:root{--bg-dark:#0d0d12;--card-bg:#16161e;--card-border:#262635;--accent-gold:#d4af37;--gold-grad:linear-gradient(135deg,#e6c875 0%,#a8842c 100%);--text-main:#f3f3f6;--text-muted:#9e9ea8;--wa-green:#25d366}
+body.theme-dark-gold{--inv-bg:#0d0d12;--inv-card:#16161e;--inv-border:#d4af37;--inv-accent:#d4af37;--inv-text:#f3f3f6;--inv-font:'Playfair Display',serif;--env-grad:radial-gradient(ellipse at 50% 30%,#1f1b2b 0%,#0d0d12 70%)}
+body.theme-emerald{--inv-bg:#061712;--inv-card:#0d261e;--inv-border:#2d8a68;--inv-accent:#3ad39f;--inv-text:#e8f7f2;--inv-font:'Philosopher',serif;--env-grad:radial-gradient(ellipse at 50% 30%,#0d382a 0%,#04120e 70%)}
+body.theme-rose{--inv-bg:#180f14;--inv-card:#271922;--inv-border:#e282b1;--inv-accent:#f4a5cd;--inv-text:#fceef5;--inv-font:'Great Vibes',cursive;--env-grad:radial-gradient(ellipse at 50% 30%,#3a1e2f 0%,#12090e 70%)}
+body.theme-blue{--inv-bg:#09131e;--inv-card:#112133;--inv-border:#4aa3df;--inv-accent:#62c1ff;--inv-text:#eaf5ff;--inv-font:'Cormorant Garamond',serif;--env-grad:radial-gradient(ellipse at 50% 30%,#173759 0%,#060d14 70%)}
+body.theme-burgundy{--inv-bg:#1a0a0f;--inv-card:#2a1219;--inv-border:#c45c6a;--inv-accent:#e07a8a;--inv-text:#fce8ec;--inv-font:'Cinzel',serif;--env-grad:radial-gradient(ellipse at 50% 30%,#3d1520 0%,#12060a 70%)}
+body.theme-purple{--inv-bg:#120f1a;--inv-card:#1e1830;--inv-border:#9b7ed9;--inv-accent:#c4a8ff;--inv-text:#f0eaff;--inv-font:'Playfair Display',serif;--env-grad:radial-gradient(ellipse at 50% 30%,#2a2240 0%,#0c0914 70%)}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Montserrat',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden}
-
+body{font-family:'Montserrat',system-ui,sans-serif;background:var(--bg-dark);color:var(--text-main);overflow-x:hidden;padding-bottom:40px;min-height:100vh}
 .serif{font-family:'Playfair Display',Georgia,serif}
 .f-cormorant{font-family:'Cormorant Garamond',Georgia,serif}
-.f-vibes{font-family:'Great Vibes','Marck Script',cursive}
-.f-marck{font-family:'Marck Script',cursive}
-
-.wrap{max-width:480px;margin:0 auto;padding:20px 16px 80px}
-.frame{background:#fff;border:2px solid var(--accent);border-radius:20px;text-align:center;position:relative;padding:26px 18px;margin-bottom:18px;box-shadow:0 10px 25px rgba(0,0,0,.05)}
-.frame::before{content:"";position:absolute;inset:6px;border:1px solid color-mix(in srgb,var(--accent) 35%,#fff);border-radius:15px;pointer-events:none}
-.muted{color:#666;font-size:14px}
-.tag{font-size:11px;color:#fff;background:var(--accent);border-radius:20px;padding:4px 14px;display:inline-block;margin-bottom:8px;font-weight:600;letter-spacing:1px;text-transform:uppercase}
-
-.btn{display:block;width:100%;padding:14px;border:none;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer;margin-top:10px;font-family:inherit;text-decoration:none;text-align:center;transition:all .2s ease}
-.btn:active{transform:scale(.97)}
-.b-gold{background:var(--accent);color:#fff}.b-gold:hover{filter:brightness(.93)}
-.b-ink{background:var(--ink);color:#fff}
-.b-line{background:none;border:2px solid var(--accent);color:var(--gold-d)}
-
-.inp,select,textarea{width:100%;padding:12px 14px;border:1px solid #e2e8f0;border-radius:12px;font-size:15px;margin-top:8px;font-family:inherit;background:#fff;transition:.2s}
-.inp:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 20%,transparent)}
-.hidden{display:none!important}
-
-/* ---------- YOUTUBE / MEDIA ---------- */
-.media-container{position:relative;width:100%;border-radius:16px;overflow:hidden;margin:14px 0;box-shadow:0 10px 25px rgba(0,0,0,.15);border:2px solid var(--accent);background:#000}
+header{position:sticky;top:0;z-index:40;background:rgba(13,13,18,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--card-border);padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
+.brand-logo{width:38px;height:38px;background:var(--gold-grad);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#000;font-weight:700;font-family:'Playfair Display',serif;font-size:20px}
+.brand-title{font-size:17px;font-weight:700}
+.brand-sub{font-size:9px;color:var(--text-muted);letter-spacing:1.4px;text-transform:uppercase}
+.lang-toggle{background:#1a1a24;border:1px solid var(--card-border);border-radius:20px;padding:3px;display:flex}
+.lang-btn{border:none;background:none;color:var(--text-muted);padding:4px 11px;font-size:11px;font-weight:600;border-radius:15px;cursor:pointer}
+.lang-btn.active{background:var(--gold-grad);color:#000}
+.hero-card{margin:16px;background:linear-gradient(180deg,#1f1b29 0%,#13121a 100%);border:1px solid var(--card-border);border-radius:22px;padding:24px 20px}
+.hero-badge{color:var(--accent-gold);font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;display:block}
+.hero-title{font-size:24px;line-height:1.25;margin-bottom:12px}
+.hero-p{font-size:13px;color:var(--text-muted);line-height:1.5;margin-bottom:20px}
+.btn-gold{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--gold-grad);color:#000;font-weight:600;font-size:14px;padding:12px 20px;border-radius:18px;text-decoration:none;border:none;cursor:pointer;transition:transform .15s}
+.btn-gold:active{transform:scale(.97)}
+.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:6px;background:transparent;color:var(--inv-accent,#d4af37);font-weight:600;font-size:13px;padding:10px 16px;border-radius:14px;border:1px solid var(--inv-border,#d4af37);text-decoration:none;cursor:pointer}
+.section-head{padding:22px 18px 10px;display:flex;justify-content:space-between;align-items:center}
+.section-head h2{font-size:18px;font-weight:600}
+.carousel{display:flex;gap:14px;overflow-x:auto;padding:6px 18px 18px;scroll-snap-type:x mandatory}
+.carousel::-webkit-scrollbar{display:none}
+.item-card{flex:0 0 200px;scroll-snap-align:start;background:var(--card-bg);border:1px solid var(--card-border);border-radius:18px;overflow:hidden;text-decoration:none;color:inherit;transition:border-color .2s,transform .2s}
+.item-card:active{transform:scale(.98)}
+.item-thumb{position:relative;height:175px;background-size:cover;background-position:center}
+.tags-layer{position:absolute;top:10px;left:10px;display:flex;gap:5px}
+.tag-pill{font-size:9px;font-weight:700;padding:3px 8px;border-radius:11px;text-transform:uppercase}
+.tag-top{background:rgba(168,132,44,.92);color:#fff}
+.tag-new{background:rgba(46,125,50,.92);color:#fff}
+.item-info{padding:12px}
+.item-cat{font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.8px}
+.item-name{font-size:15px;font-weight:600;margin:4px 0 2px}
+.item-price{font-size:14px;font-weight:700;color:var(--accent-gold)}
+.wa-float{position:fixed;bottom:22px;right:18px;z-index:50;width:54px;height:54px;background:var(--wa-green);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(37,211,102,.4);text-decoration:none}
+.wa-float svg{width:28px;height:28px;fill:#fff}
+.wrap{max-width:480px;margin:0 auto;padding:16px 14px 100px}
+.frame{background:var(--inv-card,#16161e);border:1.5px solid var(--inv-border,#d4af37);border-radius:22px;text-align:center;position:relative;padding:24px 16px;margin-bottom:16px;color:var(--inv-text,#fff);box-shadow:0 10px 30px rgba(0,0,0,.45)}
+.frame::before{content:"";position:absolute;inset:6px;border:1px solid color-mix(in srgb,var(--inv-border,#d4af37) 40%,transparent);border-radius:16px;pointer-events:none}
+.inv-title-main{font-family:var(--inv-font,serif);font-size:34px;color:var(--inv-accent,#d4af37);margin-top:8px;line-height:1.2}
+.inp,select,textarea{width:100%;padding:12px 14px;border:1px solid var(--inv-border,#262635);border-radius:12px;font-size:14px;margin-top:8px;background:rgba(0,0,0,.4);color:#fff;font-family:inherit}
+.media-container{position:relative;width:100%;border-radius:14px;overflow:hidden;margin:12px 0;border:1px solid var(--inv-border,#d4af37);background:#000}
 .video-responsive{position:relative;padding-bottom:56.25%;height:0;overflow:hidden}
 .video-responsive.vertical{padding-bottom:125%}
 .video-responsive iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
-img.ph{width:100%;border-radius:14px;margin:12px 0;border:2px solid var(--accent);object-fit:cover;max-height:320px}
-
-/* ---------- КОНВЕРТ ---------- */
-#envelope{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 30%,#2b2140 0%,#171126 70%);overflow:hidden;transition:opacity 1s ease}
+#envelope{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--env-grad,#0d0d12);transition:opacity 1s ease}
 #envelope.opened{opacity:0;pointer-events:none}
-.env-title{color:#e8d5a8;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;margin-bottom:28px;text-align:center;padding:0 20px}
-.env{position:relative;width:310px;height:200px;cursor:pointer;transform-style:preserve-3d;animation:envFloat 3s ease-in-out infinite}
+.env-title{color:#e8d5a8;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:21px;margin-bottom:26px;text-align:center;padding:0 20px}
+.env{position:relative;width:300px;height:195px;cursor:pointer;transform-style:preserve-3d;animation:envFloat 3s ease-in-out infinite}
 @keyframes envFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-.env-back{position:absolute;inset:0;border-radius:10px;background:linear-gradient(160deg,#f7ead0,#ecd9ae);box-shadow:0 20px 60px rgba(0,0,0,.5)}
-.env-letter{position:absolute;left:12px;right:12px;top:12px;height:145px;border-radius:8px;background:#fffdf7;display:flex;align-items:center;justify-content:center;transition:transform 1.2s cubic-bezier(.2,.8,.3,1) .5s;z-index:2}
-.env-letter span{font-size:30px;color:var(--accent);text-align:center;padding:0 10px;line-height:1.2}
-.env-front{position:absolute;inset:0;border-radius:10px;z-index:3;background:linear-gradient(200deg,#f3e3c2,#e6d0a3);clip-path:polygon(0 32%,50% 68%,100% 32%,100% 100%,0 100%);transition:opacity .3s .6s}
-.env-flap{position:absolute;left:0;right:0;top:0;height:52%;z-index:4;transform-origin:top;background:linear-gradient(180deg,#e9d3a8,#dcc290);clip-path:polygon(0 0,100% 0,50% 100%);transition:transform 1s ease}
-.env-seal{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);z-index:5;width:60px;height:60px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#d4564a,#8e2318);display:flex;align-items:center;justify-content:center;color:#ffd9c9;font-family:'Playfair Display',serif;font-size:22px;font-weight:700;box-shadow:0 4px 12px rgba(0,0,0,.4);transition:opacity .3s}
+.env-back{position:absolute;inset:0;border-radius:12px;background:var(--inv-card,#2a2538);border:1px solid var(--inv-border,#d4af37);box-shadow:0 20px 60px rgba(0,0,0,.8)}
+.env-letter{position:absolute;left:12px;right:12px;top:12px;height:140px;border-radius:8px;background:#fffdf7;color:#1a1a2e;display:flex;align-items:center;justify-content:center;transition:transform 1.2s cubic-bezier(.2,.8,.3,1) .5s;z-index:2}
+.env-letter span{font-size:26px;color:var(--inv-accent,#a8842c);text-align:center;font-weight:600;padding:0 10px;line-height:1.2}
+.env-front{position:absolute;inset:0;border-radius:12px;z-index:3;background:var(--inv-card,#252033);clip-path:polygon(0 32%,50% 68%,100% 32%,100% 100%,0 100%);transition:opacity .3s .6s}
+.env-flap{position:absolute;left:0;right:0;top:0;height:52%;z-index:4;transform-origin:top;background:var(--inv-border,#332b45);clip-path:polygon(0 0,100% 0,50% 100%);transition:transform 1s ease}
+.env-seal{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);z-index:5;width:56px;height:56px;border-radius:50%;background:radial-gradient(circle at 35% 30%,var(--inv-accent,#d4af37),#8a6d1c);display:flex;align-items:center;justify-content:center;color:#000;font-family:'Playfair Display',serif;font-size:20px;font-weight:700;box-shadow:0 4px 15px rgba(0,0,0,.6);transition:opacity .3s}
 .env.open .env-flap{transform:rotateX(180deg);z-index:1}
 .env.open .env-seal{opacity:0}
-.env.open .env-letter{transform:translateY(-70px) scale(1.05)}
+.env.open .env-letter{transform:translateY(-68px) scale(1.05)}
 .env.open .env-front{opacity:0}
-.env-hint{margin-top:30px;color:#b9a8d8;font-size:12px;letter-spacing:2px;animation:blink 1.6s infinite}
-@keyframes blink{50%{opacity:.35}}
-
-/* ---------- ЯЗЫКИ И МУЗЫКА ---------- */
-.lang-switch{display:flex;justify-content:center;gap:6px;margin-bottom:12px}
-.lang-btn{background:none;border:1px solid #ddd;padding:4px 12px;border-radius:15px;font-size:12px;cursor:pointer;color:#666}
-.lang-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
-
-.music-btn{position:fixed;bottom:20px;right:20px;z-index:40;width:50px;height:50px;border-radius:50%;background:var(--accent);color:#fff;border:none;box-shadow:0 6px 18px rgba(0,0,0,.2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;animation:pulse 2s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(201,162,75,0.6)}70%{box-shadow:0 0 0 15px rgba(201,162,75,0)}100%{box-shadow:0 0 0 0 rgba(201,162,75,0)}}
-
-/* ---------- ТАЙМЕР И СТАТИСТИКА ---------- */
-.petal{position:fixed;top:-30px;z-index:60;pointer-events:none;font-size:18px;animation:fall linear forwards}
-@keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:.4}}
-
 .count{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
-.count div{background:var(--ink);border-radius:12px;padding:10px 4px}
-.count b{display:block;font-size:22px;color:#f2d295;font-family:'Playfair Display',serif}
-.count span{font-size:10px;color:#ccc}
-
-.stat{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
-.stat div{border-radius:12px;padding:12px 4px}
-.stat b{display:block;font-size:24px;font-family:'Playfair Display',serif}
-.stat span{font-size:11px;opacity:.8}
-.s1{background:var(--accent);color:#fff}.s2{background:var(--ink);color:#fff}.s3{background:#e2e8f0;color:#333}
-
-ul.guests{list-style:none;text-align:left;margin-top:14px;max-height:300px;overflow-y:auto}
-ul.guests li{display:flex;justify-content:space-between;align-items:center;padding:10px 4px;border-bottom:1px solid #edf2f7;font-size:13px}
-
-.hero{background:linear-gradient(180deg,#f9e9cd,var(--bg));text-align:center;padding:50px 16px 36px}
-.hero h1{font-family:'Playfair Display',Georgia,serif;font-size:32px;line-height:1.2}
-.hero p{color:#555;max-width:420px;margin:12px auto 0;font-size:14px}
-
-.cards{display:grid;gap:12px;max-width:640px;margin:24px auto;padding:0 16px}
-@media(min-width:560px){.cards{grid-template-columns:1fr 1fr}}
-.feat{background:#fff;border:1px solid #f0e2c4;border-radius:14px;padding:14px;font-size:13px;color:#555}
-.feat h3{color:var(--ink);font-size:14px;margin:4px 0}
-.demo-card{display:block;background:#fff;border:2px solid var(--accent);border-radius:16px;padding:16px;text-decoration:none;color:inherit;text-align:center}
-
-footer{background:var(--ink);color:#888;text-align:center;font-size:12px;padding:24px 16px;margin-top:40px}
-.swatches{display:flex;gap:8px;margin-top:6px}
-.sw{width:32px;height:32px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 1px #ddd;cursor:pointer}
+.count div{background:rgba(0,0,0,.4);border-radius:12px;padding:10px 4px;border:1px solid var(--inv-border,#262635)}
+.count b{display:block;font-size:22px;color:var(--inv-accent,#d4af37)}
+.count span{font-size:10px;opacity:.7}
+.nav-bar{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+.hidden{display:none!important}
+.edit-form{max-width:480px;margin:0 auto;padding:20px 16px 80px}
+.edit-form .frame{text-align:left}
+.edit-form label{display:block;font-size:12px;color:var(--text-muted);margin-top:14px;margin-bottom:4px}
+.theme-picker{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.theme-swatch{width:48px;height:48px;border-radius:12px;cursor:pointer;border:2px solid transparent;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
+.theme-swatch.active{border-color:#fff;transform:scale(1.08)}
 </style>
 </head>
-<body>
+<body class="theme-dark-gold">
 
-<!-- ==================== ПЛЕЕР МУЗЫКИ ==================== -->
-<button id="musicBtn" class="music-btn hidden" onclick="toggleMusic()">🎵</button>
-<audio id="bgAudio" loop></audio>
-
-<!-- ==================== ЛЕНДИНГ ==================== -->
-<div id="view-landing" class="hidden">
-  <div class="hero">
-    <span class="tag">TAKLIF PRO • PRO VERSION</span>
-    <h1>Электрондық шақырулар<br>Электронные приглашения</h1>
-    <p>Конверт ашылу анимациясы, видеоклиптер, таймер және қонақтардың онлайн RSVP тізімі.</p>
-    <div style="max-width:340px;margin:24px auto 0">
-      <a class="btn b-gold" href="?e=arman">👁 Демо қарау (Үлгі)</a>
-      <a class="btn b-line" href="?edit=new">✏️ Өз шақыруыңды жасау</a>
-      <a class="btn b-ink" href="https://wa.me/77001234567" target="_blank">💬 WhatsApp арқылы тапсырыс</a>
+<header>
+  <a href="?" class="brand">
+    <div class="brand-logo">K</div>
+    <div>
+      <div class="brand-title">Kelshi</div>
+      <div class="brand-sub">ОНЛАЙН-ПРИГЛАШЕНИЯ</div>
     </div>
+  </a>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('ru')">RU</button>
+    <button class="lang-btn" onclick="setLang('kz')">ҚАЗ</button>
   </div>
-  <div class="cards" id="demoCards"></div>
-  <footer>Taklif Pro • PRO GitHub Edition • Шымкент / Сайрам</footer>
+</header>
+
+<div id="view-landing" class="hidden">
+  <div class="hero-card">
+    <span class="hero-badge">PREMIUM DESIGNS • 62 ШАБЛОНА</span>
+    <h1 class="hero-title serif">Приглашения с вашей уникальной атмосферой</h1>
+    <p class="hero-p">Выберите готовый стиль или создайте свой вариант за пару минут.</p>
+    <a href="?edit=new" class="btn-gold">✏️ Создать своё приглашение</a>
+  </div>
+  <div class="section-head"><h2>Мерейтой / Юбилей</h2></div>
+  <div class="carousel" id="cat-jubilee"></div>
+  <div class="section-head"><h2>Үйлену тойы / Свадьба</h2></div>
+  <div class="carousel" id="cat-wedding"></div>
+  <div class="section-head"><h2>Қыз ұзату</h2></div>
+  <div class="carousel" id="cat-uzatu"></div>
+  <div class="section-head"><h2>Сүндет той</h2></div>
+  <div class="carousel" id="cat-sundet"></div>
+  <div class="section-head"><h2>Туған күн / Другие</h2></div>
+  <div class="carousel" id="cat-other"></div>
 </div>
 
-<!-- ==================== КОНВЕРТ ==================== -->
+<div id="view-edit" class="hidden">
+  <div class="edit-form">
+    <div class="frame">
+      <h2 class="serif" style="font-size:22px;text-align:center;margin-bottom:8px">Конструктор приглашения</h2>
+      <p style="text-align:center;font-size:13px;opacity:.7;margin-bottom:16px">Заполните данные и выберите тему</p>
+      <label>Тип события</label>
+      <select id="e-kind" class="inp">
+        <option value="Мерейтой / Юбилей">Мерейтой / Юбилей</option>
+        <option value="Үйлену тойы / Свадьба">Үйлену тойы / Свадьба</option>
+        <option value="Қыз ұзату">Қыз ұзату</option>
+        <option value="Сүндет той">Сүндет той</option>
+        <option value="Туған күн">Туған күн</option>
+        <option value="Бесік той">Бесік той</option>
+      </select>
+      <label>Имена / Заголовок</label>
+      <input id="e-names" class="inp" placeholder="Например: Арман & Аружан">
+      <label>Дата и время</label>
+      <input id="e-date" type="datetime-local" class="inp">
+      <label>Текст даты</label>
+      <input id="e-dateText" class="inp" placeholder="25 октября 2026, 19:00">
+      <label>Место проведения</label>
+      <input id="e-venue" class="inp" placeholder="Ресторан «Royal Hall»">
+      <label>Адрес</label>
+      <input id="e-address" class="inp" placeholder="г. Шымкент, ул. ...">
+      <label>Текст приглашения</label>
+      <textarea id="e-greet" class="inp" rows="3" placeholder="Құрметті қонақтар! ..."></textarea>
+      <label>YouTube Video ID (необязательно)</label>
+      <input id="e-video" class="inp" placeholder="6CEagMhuRFc">
+      <label>Тема оформления</label>
+      <div class="theme-picker" id="theme-picker">
+        <div class="theme-swatch active" data-theme="theme-dark-gold" style="background:linear-gradient(135deg,#d4af37,#1a1a24)">G</div>
+        <div class="theme-swatch" data-theme="theme-emerald" style="background:linear-gradient(135deg,#3ad39f,#0d261e)">E</div>
+        <div class="theme-swatch" data-theme="theme-rose" style="background:linear-gradient(135deg,#f4a5cd,#271922)">R</div>
+        <div class="theme-swatch" data-theme="theme-blue" style="background:linear-gradient(135deg,#62c1ff,#112133)">B</div>
+        <div class="theme-swatch" data-theme="theme-burgundy" style="background:linear-gradient(135deg,#e07a8a,#2a1219)">U</div>
+        <div class="theme-swatch" data-theme="theme-purple" style="background:linear-gradient(135deg,#c4a8ff,#1e1830)">P</div>
+      </div>
+      <button class="btn-gold" style="width:100%;margin-top:22px" onclick="previewCustom()">👁 Предпросмотр</button>
+      <a href="?" class="btn-outline" style="width:100%;margin-top:10px;display:flex">← В каталог</a>
+    </div>
+  </div>
+</div>
+
 <div id="envelope" class="hidden">
-  <p class="env-title" id="env-title">Құрметті қонақтар, сіздерге арналады</p>
+  <p class="env-title">Құрметті қонақтар, сіздерге арналады</p>
   <div class="env" id="env" onclick="openEnv()">
     <div class="env-back"></div>
     <div class="env-letter"><span id="env-names"></span></div>
@@ -131,452 +175,93 @@ footer{background:var(--ink);color:#888;text-align:center;font-size:12px;padding
     <div class="env-flap"></div>
     <div class="env-seal">❦</div>
   </div>
-  <p class="env-hint">АШУ ҮШІН БАСЫҢЫЗ / НАЖМИТЕ, ЧТОБЫ ОТКРЫТЬ</p>
+  <p style="margin-top:28px;color:var(--inv-accent,#d4af37);font-size:12px;letter-spacing:2px">НАЖМИТЕ, ЧТОБЫ ОТКРЫТЬ</p>
 </div>
 
-<!-- ==================== ПРИГЛАСИТЕЛЬНАЯ ==================== -->
 <div id="view-invite" class="wrap hidden">
-  <div class="lang-switch">
-    <button class="lang-btn active" id="btn-kk" onclick="setLang('kk')">ҚАЗ</button>
-    <button class="lang-btn" id="btn-ru" onclick="setLang('ru')">РУС</button>
+  <div class="nav-bar">
+    <a href="?" class="btn-outline">← Каталог</a>
+    <button class="btn-outline" onclick="shareWhatsApp()">📱 WhatsApp</button>
   </div>
-
   <div class="frame">
-    <span class="tag" id="i-kind"></span>
+    <span id="i-kind" style="color:var(--inv-accent,#d4af37);font-size:11px;letter-spacing:2px;text-transform:uppercase"></span>
     <div id="i-media"></div>
-    <h1 id="i-names" style="font-size:36px;margin-top:8px"></h1>
-    <p class="muted" id="i-date" style="margin-top:6px;font-weight:500"></p>
-    <p class="muted f-cormorant" style="font-style:italic;margin-top:14px;font-size:18px;line-height:1.4" id="i-greet"></p>
+    <h1 id="i-names" class="inv-title-main"></h1>
+    <p id="i-date" style="opacity:.8;font-size:14px;margin-top:6px"></p>
+    <p id="i-greet" class="f-cormorant" style="font-style:italic;margin-top:16px;font-size:18px;line-height:1.4"></p>
   </div>
-
   <div class="frame">
-    <p class="muted" id="txt-timer-title">Салтанатты күнге дейін қалды:</p>
+    <p style="opacity:.8;font-size:13px">До торжества осталось:</p>
     <div class="count">
-      <div><b id="cd-d">00</b><span id="txt-d">күн</span></div>
-      <div><b id="cd-h">00</b><span id="txt-h">сағат</span></div>
-      <div><b id="cd-m">00</b><span id="txt-m">минут</span></div>
-      <div><b id="cd-s">00</b><span id="txt-s">секунд</span></div>
+      <div><b id="cd-d">00</b><span>дней</span></div>
+      <div><b id="cd-h">00</b><span>часов</span></div>
+      <div><b id="cd-m">00</b><span>минут</span></div>
+      <div><b id="cd-s">00</b><span>секунд</span></div>
     </div>
   </div>
-
   <div class="frame">
-    <p class="muted" id="txt-venue-title">Мекен-жайымыз:</p>
-    <h2 class="serif" style="font-size:22px;margin-top:4px" id="i-venue"></h2>
-    <p class="muted" id="i-address" style="margin-top:4px"></p>
-    <div id="i-maps" style="margin-top:14px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap"></div>
+    <p style="opacity:.8;font-size:13px">Место проведения:</p>
+    <h2 id="i-venue" class="serif" style="font-size:21px;margin-top:6px"></h2>
+    <p id="i-address" style="opacity:.8;font-size:13px;margin-top:4px"></p>
+    <div style="margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <a href="#" id="map-2gis" target="_blank" class="btn-gold" style="padding:10px 16px;font-size:13px">🗺️ 2GIS</a>
+      <a href="#" id="map-yandex" target="_blank" class="btn-gold" style="padding:10px 16px;font-size:13px">🚗 Яндекс</a>
+    </div>
   </div>
-
   <div class="frame">
-    <div id="rsvp-box">
-      <h2 class="serif" style="font-size:20px" id="txt-rsvp-title">Тойға келетініңізді растаңыз</h2>
-      <input class="inp" id="r-name" placeholder="Аты-жөніңіз / Ваше имя">
-      <select id="r-guests" class="inp">
-        <option value="1">Өзім барамын (1 адам)</option>
-        <option value="2">Жұбымызбен (2 адам)</option>
-        <option value="3">Отбасымызбен (3+ адам)</option>
+    <div id="rsvp-form">
+      <h2 class="serif" style="font-size:20px">Подтвердите присутствие</h2>
+      <input class="inp" id="r-name" placeholder="Ваше имя и фамилия">
+      <select class="inp" id="r-count">
+        <option value="1">Приду один / одна</option>
+        <option value="2">Приду вдвоём (2 чел.)</option>
+        <option value="3">Приду с семьёй (3+ чел.)</option>
+        <option value="0">К сожалению, не смогу</option>
       </select>
-      <input class="inp" id="r-wishes" placeholder="Тілек / Пожелания (необязательно)">
-      <button class="btn b-gold" id="r-yes">✓ Иә, барамын / Приду!</button>
-      <button class="btn b-ink" id="r-no" style="margin-top:6px">Өкінішке орай, бара алмаймын</button>
+      <button class="btn-gold" onclick="submitRsvp()" style="width:100%;margin-top:14px;border-radius:12px">✓ Подтвердить</button>
     </div>
-    <div id="rsvp-ok" class="hidden" style="padding:16px 0">
-      <h2 class="f-vibes" style="color:#2e7d32;font-size:32px">Рақмет! Спасибо! 🙏</h2>
-      <p class="muted" style="margin-top:6px">Жауабыңыз қабылданды!</p>
+    <div id="rsvp-ok" class="hidden" style="padding:10px 0">
+      <h3 style="color:#2e7d32;font-size:22px">Спасибо! 🙏</h3>
+      <p style="opacity:.8;font-size:13px;margin-top:4px" id="rsvp-msg">Ваш ответ успешно сохранён.</p>
     </div>
   </div>
 </div>
 
-<!-- ==================== ПАНЕЛЬ ХОЗЯИНА ==================== -->
-<div id="view-host" class="wrap hidden">
-  <div class="frame">
-    <span class="tag">Басқару панелі / Панель хозяина</span>
-    <h1 class="serif" style="font-size:24px;margin-top:6px" id="h-names"></h1>
-    <p class="muted" id="h-venue"></p>
-    
-    <div style="margin-top:12px;padding:10px;background:#f8fafc;border-radius:12px">
-      <p class="muted" style="font-size:11px">Қонақтарға арналған сілтеме / Ссылка:</p>
-      <b id="h-link" style="color:var(--gold-d);word-break:break-all;font-size:12px"></b>
-      <button class="btn b-line" style="padding:8px;font-size:12px;margin-top:6px" onclick="shareWa()">📲 WhatsApp-пен жіберу</button>
-    </div>
-
-    <div class="stat">
-      <div class="s1"><b id="h-total">0</b><span>адам келеді</span></div>
-      <div class="s2"><b id="h-yes">0</b><span>«Иә» жауап</span></div>
-      <div class="s3"><b id="h-no">0</b><span>«Жоқ»</span></div>
-    </div>
-    <ul class="guests" id="h-list"></ul>
-  </div>
-</div>
-
-<!-- ==================== РЕДАКТОР ==================== -->
-<div id="view-edit" class="wrap hidden">
-  <div class="frame" style="text-align:left">
-    <span class="tag">Конструктор</span>
-    <h1 class="serif" style="font-size:22px">Жаңа шақыру жасау</h1>
-
-    <label class="muted" style="font-size:11px;margin-top:10px;display:block">Той түрі / Тип события</label>
-    <select id="ed-kind" class="inp">
-      <option>Үйлену тойы</option><option>Қыз ұзату</option><option>Сүндет той</option><option>Мерейтой</option><option>Бесік той</option>
-    </select>
-
-    <label class="muted" style="font-size:11px;margin-top:10px;display:block">Есімдер (Арман & Аружан)</label>
-    <input class="inp" id="ed-names" placeholder="Арман, Аружан">
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-      <div>
-        <label class="muted" style="font-size:11px;margin-top:10px;display:block">Уақыты</label>
-        <input class="inp" type="datetime-local" id="ed-date">
-      </div>
-      <div>
-        <label class="muted" style="font-size:11px;margin-top:10px;display:block">Түсі</label>
-        <div class="swatches">
-          <div class="sw" style="background:#c9a24b" onclick="setAccent('#c9a24b')"></div>
-          <div class="sw" style="background:#7fb3d5" onclick="setAccent('#7fb3d5')"></div>
-          <div class="sw" style="background:#d46a6a" onclick="setAccent('#d46a6a')"></div>
-          <div class="sw" style="background:#2e7d32" onclick="setAccent('#2e7d32')"></div>
-        </div>
-      </div>
-    </div>
-
-    <label class="muted" style="font-size:11px;margin-top:10px;display:block">YouTube / Shorts сілтемесі</label>
-    <input class="inp" id="ed-video" placeholder="https://www.youtube.com/shorts/6CEagMhuRFc">
-
-    <label class="muted" style="font-size:11px;margin-top:10px;display:block">Музыка MP3 сілтемесі (URL)</label>
-    <input class="inp" id="ed-music" placeholder="https://site.com/music.mp3">
-
-    <label class="muted" style="font-size:11px;margin-top:10px;display:block">Ресторан / Мекен-жай</label>
-    <input class="inp" id="ed-venue" placeholder="Ресторан «Firdavs»">
-    <input class="inp" id="ed-address" placeholder="Шымкент қ., Бәйдібек би к-сі, 15">
-
-    <label class="muted" style="font-size:11px;margin-top:10px;display:block">2GIS / Яндекс Карта сілтемелері</label>
-    <input class="inp" id="ed-2gis" placeholder="https://2gis.kz/...">
-    <input class="inp" id="ed-yandex" placeholder="https://yandex.ru/maps/...">
-
-    <label class="muted" style="font-size:11px;margin-top:10px;display:block">Шақыру мәтіні (Қазақша)</label>
-    <textarea id="ed-kk" class="inp" rows="2" placeholder="Құрметті қонақтар..."></textarea>
-
-    <label class="muted" style="font-size:11px;margin-top:10px;display:block">Текст приглашения (Русский)</label>
-    <textarea id="ed-ru" class="inp" rows="2" placeholder="Дорогие гости..."></textarea>
-
-    <button class="btn b-gold" id="ed-save" style="margin-top:16px">💾 Сақтау / Сохранить</button>
-
-    <div id="ed-done" class="hidden" style="margin-top:16px;padding-top:12px;border-top:1px dashed #ccc">
-      <p style="font-size:12px">Қонақтарға: <b id="ed-link-guest" style="color:var(--gold-d);word-break:break-all"></b></p>
-      <p style="font-size:12px;margin-top:4px">Хозяинге: <b id="ed-link-host" style="word-break:break-all"></b></p>
-      <a class="btn b-line" id="ed-preview" target="_blank" style="margin-top:10px">👁 Ашып қарау</a>
-    </div>
-  </div>
-</div>
+<a href="https://wa.me/77001234567" target="_blank" class="wa-float" title="Написать нам">
+  <svg viewBox="0 0 32 32"><path d="M16 2A13 13 0 0 0 4.69 21.25L3 28l6.91-1.63A13 13 0 1 0 16 2zm0 24a10.93 10.93 0 0 1-5.58-1.52l-.4-.24-4.13.97 1.05-3.97-.26-.42A10.95 10.95 0 1 1 16 26zm6-8.15c-.33-.16-1.94-.96-2.24-1.07s-.52-.16-.74.17-.85 1.07-1.05 1.29-.39.25-.72.08a9.12 9.12 0 0 1-2.68-1.65 10.08 10.08 0 0 1-1.85-2.31c-.19-.33 0-.5.15-.67.15-.14.33-.39.5-.58s.22-.33.33-.55.05-.42-.03-.58-.74-1.78-1-2.44c-.26-.64-.53-.55-.73-.56h-.62a1.2 1.2 0 0 0-.87.4 3.66 3.66 0 0 0-1.14 2.72A6.38 6.38 0 0 0 12 16.5a14.6 14.6 0 0 0 5.6 4.93c2.4 1 2.89.83 3.41.78a2.89 2.89 0 0 0 1.91-1.35 2.37 2.37 0 0 0 .17-1.35c-.08-.12-.31-.24-.64-.4z"/></svg>
+</a>
 
 <script>
-/* ==================== НАСТРОЙКИ PRO / FIREBASE ==================== */
-// Егер Firebase БД бар болса, URL енгізіңіз. Бос болса локальді localStorage қолданылады.
-const FIREBASE_DB_URL = ""; 
+const THEMES = ["theme-dark-gold","theme-emerald","theme-rose","theme-blue","theme-burgundy","theme-purple"];
+const IMGS = {
+  gold:["https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=500","https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=500","https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=500","https://images.unsplash.com/photo-1520854221256-351802d754a5?w=500"],
+  emerald:["https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=500","https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=500","https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=500"],
+  rose:["https://images.unsplash.com/photo-1519741497674-611481863552?w=500","https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=500","https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=500"],
+  blue:["https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=500","https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=500","https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=500"],
+  burgundy:["https://images.unsplash.com/photo-1520854221256-351802d754a5?w=500","https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=500"],
+  purple:["https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=500","https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=500"],
+  other:["https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=500","https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=500"]
+};
 
-const EVENTS = [
-  { 
-    id: "arman", 
-    kind: "Үйлену тойы", 
-    names: ["Арман", "Аружан"], 
-    dateISO: "2026-10-25T18:00:00+05:00",
-    venue: "Ресторан «Firdavs»", 
-    address: "Шымкент қ., Бәйдібек би к-сі, 15",
-    videoYT: "https://www.youtube.com/shorts/6CEagMhuRFc",
-    music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-    maps: { twoGis: "https://2gis.kz/shymkent", yandex: "https://yandex.ru/maps/?text=Шымкент Байдибек би 15" },
-    accent: "#c9a24b", 
-    font: "f-vibes",
-    greetKK: "Құрметті ағайын-туыс, бауырлар, дос-жарандар! Сіздерді ұлымыз Арман мен келініміз Аружанның үйлену тойына арналған ақ дастарханымыздың қадірлі қонағы болуға шақырамыз!",
-    greetRU: "Дорогие родные и близкие! Приглашаем вас разделить с нами радость торжества, посвященного свадьбе нашего сына Армана и невестки Аружан!" 
-  }
-];
-
-const $ = id => document.getElementById(id);
-const q = new URLSearchParams(location.search);
-const CUSTOM = () => { try { return JSON.parse(localStorage.getItem("taklif_pro_events")||"[]"); } catch { return []; } };
-const ALL = () => [...EVENTS, ...CUSTOM()];
-
-const evId = q.get("e") || q.get("host") || (q.get("edit") && q.get("edit") !== "new" ? q.get("edit") : null);
-const event = ALL().find(e => e.id === evId);
-let currentLang = 'kk';
-
-/* ---------- РОУТИНГ ---------- */
-if (q.has("edit")) {
-  showEditScreen();
-} else if (event && q.has("host")) {
-  showHostScreen();
-} else if (event) {
-  showEnvelopeScreen();
-} else {
-  showLandingScreen();
-}
-
-function showLandingScreen() {
-  $("view-landing").classList.remove("hidden");
-  const demoDiv = $("demoCards");
-  if (demoDiv) {
-    demoDiv.innerHTML = ALL().map(e => `
-      <a class="demo-card" href="?e=${e.id}" style="--accent:${e.accent||'#c9a24b'}">
-        <span class="tag">${e.kind}</span>
-        <div class="serif" style="font-size:20px;font-weight:bold">${e.names.join(" & ")}</div>
-        <div class="muted" style="font-size:12px;margin-top:4px">${new Date(e.dateISO).toLocaleDateString("ru-RU")} • ${e.venue}</div>
-      </a>`).join("");
-  }
-}
-
-function showEnvelopeScreen() {
-  $("envelope").classList.remove("hidden");
-  $("env-names").textContent = event.names.join(" & ");
-  $("env-names").className = event.font || "f-vibes";
-  if (event.accent) document.documentElement.style.setProperty("--accent", event.accent);
-}
-
-function openEnv() {
-  $("env").classList.add("open");
-  petals();
-  setTimeout(() => {
-    $("envelope").classList.add("opened");
-    initInvite();
-  }, 1200);
-}
-
-function petals() {
-  const em = ["🌸","✦","🌼","💛","✨"];
-  for(let i=0; i<25; i++){
-    const p = document.createElement("span");
-    p.className = "petal";
-    p.textContent = em[i % em.length];
-    p.style.left = Math.random()*100 + "vw";
-    p.style.animationDuration = (3 + Math.random()*4) + "s";
-    p.style.animationDelay = Math.random()*1.5 + "s";
-    document.body.appendChild(p);
-    setTimeout(() => p.remove(), 7000);
-  }
-}
-
-/* ---------- ИНИЦИАЛИЗАЦИЯ ШАҚЫРУ ---------- */
-function initInvite() {
-  $("view-invite").classList.remove("hidden");
-  document.title = event.names.join(" & ");
-  if (event.accent) document.documentElement.style.setProperty("--accent", event.accent);
-
-  // Музыка
-  if (event.music) {
-    const audio = $("bgAudio");
-    audio.src = event.music;
-    $("musicBtn").classList.remove("hidden");
-  }
-
-  $("i-kind").textContent = event.kind;
-  const namesEl = $("i-names");
-  namesEl.textContent = event.names.join(" & ");
-  namesEl.className = event.font || "f-vibes";
-
-  const dt = new Date(event.dateISO);
-  $("i-date").textContent = dt.toLocaleDateString("ru-RU", {day:'numeric', month:'long', year:'numeric'}) + 
-    " ж., " + dt.toLocaleTimeString("ru-RU", {hour:'2-digit', minute:'2-digit'});
-
-  $("i-venue").textContent = event.venue;
-  $("i-address").textContent = event.address;
-
-  setLang('kk');
-  renderMedia(event.videoYT, event.photo);
-
-  // Карты
-  const mapsDiv = $("i-maps");
-  mapsDiv.innerHTML = "";
-  if (event.maps?.twoGis) mapsDiv.innerHTML += `<a class="btn b-line" style="width:auto;padding:8px 16px;font-size:13px" href="${event.maps.twoGis}" target="_blank">🗺️ 2GIS</a>`;
-  if (event.maps?.yandex) mapsDiv.innerHTML += `<a class="btn b-line" style="width:auto;padding:8px 16px;font-size:13px" href="${event.maps.yandex}" target="_blank">🚗 Яндекс</a>`;
-
-  // Таймер
-  setInterval(() => {
-    const diff = new Date(event.dateISO) - new Date();
-    if (diff <= 0) return;
-    $("cd-d").textContent = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
-    $("cd-h").textContent = String(Math.floor((diff / (1000 * 60 * 60)) % 24)).padStart(2, '0');
-    $("cd-m").textContent = String(Math.floor((diff / 1000 / 60) % 60)).padStart(2, '0');
-    $("cd-s").textContent = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
-  }, 1000);
-
-  // RSVP
-  $("r-yes").onclick = () => sendRsvp("Иә / Да");
-  $("r-no").onclick = () => sendRsvp("Жоқ / Нет");
-}
-
-function setLang(lang) {
-  currentLang = lang;
-  $("btn-kk").classList.toggle("active", lang === 'kk');
-  $("btn-ru").classList.toggle("active", lang === 'ru');
-
-  if (lang === 'kk') {
-    $("i-greet").textContent = event.greetKK || event.greetRU;
-    $("txt-timer-title").textContent = "Салтанатты күнге дейін қалды:";
-    $("txt-venue-title").textContent = "Мекен-жайымыз:";
-    $("txt-rsvp-title").textContent = "Тойға келетініңізді растаңыз";
-    $("txt-d").textContent = "күн"; $("txt-h").textContent = "сағат";
-    $("txt-m").textContent = "минут"; $("txt-s").textContent = "секунд";
-  } else {
-    $("i-greet").textContent = event.greetRU || event.greetKK;
-    $("txt-timer-title").textContent = "До торжества осталось:";
-    $("txt-venue-title").textContent = "Место проведения:";
-    $("txt-rsvp-title").textContent = "Подтвердите свое присутствие";
-    $("txt-d").textContent = "дней"; $("txt-h").textContent = "часов";
-    $("txt-m").textContent = "минут"; $("txt-s").textContent = "секунд";
-  }
-}
-
-function renderMedia(videoUrl, photoUrl) {
-  const container = $("i-media");
-  if (!container) return;
-  container.innerHTML = "";
-
-  if (videoUrl) {
-    const isShorts = videoUrl.includes("shorts");
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|shorts\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-    const match = videoUrl.match(regExp);
-
-    if (match && match[2].length === 11) {
-      const videoId = match[2];
-      const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=1&rel=0`;
-      container.innerHTML = `
-        <div class="media-container">
-          <div class="video-responsive ${isShorts ? 'vertical' : ''}">
-            <iframe src="${embedUrl}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div>
-        </div>`;
-      return;
-    }
-  }
-
-  if (photoUrl) container.innerHTML = `<img src="${photoUrl}" class="ph" alt="Photo" />`;
-}
-
-function toggleMusic() {
-  const audio = $("bgAudio");
-  const btn = $("musicBtn");
-  if (audio.paused) {
-    audio.play();
-    btn.textContent = "🔊";
-  } else {
-    audio.pause();
-    btn.textContent = "🎵";
-  }
-}
-
-/* ---------- FIREBASE / RSVP API ---------- */
-async function sendRsvp(status) {
-  const name = $("r-name").value.trim();
-  if (!name) { alert(currentLang === 'kk' ? "Аты-жөніңізді енгізіңіз" : "Укажите ваше имя"); return; }
-  
-  const payload = {
-    name, status,
-    guests: $("r-guests").value,
-    wishes: $("r-wishes").value,
-    time: new Date().toISOString()
-  };
-
-  if (FIREBASE_DB_URL) {
-    await fetch(`${FIREBASE_DB_URL}/events/${event.id}/guests.json`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
-  } else {
-    let list = [];
-    try { list = JSON.parse(localStorage.getItem("taklif_rsvp_" + event.id) || "[]"); } catch(e){}
-    list.push(payload);
-    localStorage.setItem("taklif_rsvp_" + event.id, JSON.stringify(list));
-  }
-
-  $("rsvp-box").classList.add("hidden");
-  $("rsvp-ok").classList.remove("hidden");
-}
-
-/* ---------- ПАНЕЛЬ ХОЗЯИНА ---------- */
-function showHostScreen() {
-  $("view-host").classList.remove("hidden");
-  $("h-names").textContent = event.names.join(" & ");
-  $("h-venue").textContent = event.venue;
-  const link = location.origin + location.pathname + "?e=" + event.id;
-  $("h-link").innerText = link;
-
-  async function fetchRsvps() {
-    let list = [];
-    if (FIREBASE_DB_URL) {
-      try {
-        const res = await fetch(`${FIREBASE_DB_URL}/events/${event.id}/guests.json`);
-        const data = await res.json();
-        if (data) list = Object.values(data);
-      } catch(e){}
-    } else {
-      try { list = JSON.parse(localStorage.getItem("taklif_rsvp_" + event.id) || "[]"); } catch(e){}
-    }
-
-    let total = 0, yes = 0, no = 0, html = "";
-    list.forEach(r => {
-      if (r.status.includes("Иә") || r.status.includes("Да")) {
-        yes++;
-        total += parseInt(r.guests || 1);
-      } else {
-        no++;
-      }
-      html += `<li><span><b>${r.name}</b> (${r.guests} адам/чел)<br><small style="color:#888">${r.wishes||''}</small></span><b style="color:${r.status.includes('Иә')||r.status.includes('Да')?'#2e7d32':'#c62828'}">${r.status}</b></li>`;
-    });
-
-    $("h-total").textContent = total;
-    $("h-yes").textContent = yes;
-    $("h-no").textContent = no;
-    $("h-list").innerHTML = html || '<li class="muted">Әлі жауаптар түскен жоқ</li>';
-  }
-
-  fetchRsvps();
-  setInterval(fetchRsvps, 4000);
-}
-
-function shareWa() {
-  const link = location.origin + location.pathname + "?e=" + event.id;
-  const text = encodeURIComponent(`Сіздерді тойымызға шақырамыз! Электронды шақыру билеті:\n${link}`);
-  window.open(`https://wa.me/?text=${text}`, '_blank');
-}
-
-/* ---------- РЕДАКТОР ---------- */
-let activeAccent = "#c9a24b";
-function setAccent(col) {
-  activeAccent = col;
-  document.documentElement.style.setProperty("--accent", col);
-}
-
-function showEditScreen() {
-  $("view-edit").classList.remove("hidden");
-  $("ed-save").onclick = () => {
-    const id = "evt_" + Math.random().toString(36).substr(2, 6);
-    const newEvt = {
-      id,
-      kind: $("ed-kind").value,
-      names: $("ed-names").value.split(",").map(s => s.trim()).filter(Boolean),
-      dateISO: $("ed-date").value ? new Date($("ed-date").value).toISOString() : new Date().toISOString(),
-      videoYT: $("ed-video").value,
-      music: $("ed-music").value,
-      venue: $("ed-venue").value,
-      address: $("ed-address").value,
-      maps: { twoGis: $("ed-2gis").value, yandex: $("ed-yandex").value },
-      accent: activeAccent,
-      greetKK: $("ed-kk").value,
-      greetRU: $("ed-ru").value
-    };
-
-    let list = CUSTOM();
-    list.push(newEvt);
-    localStorage.setItem("taklif_pro_events", JSON.stringify(list));
-
-    $("ed-done").classList.remove("hidden");
-    const base = location.origin + location.pathname;
-    $("ed-link-guest").innerText = base + "?e=" + id;
-    $("ed-link-host").innerText = base + "?host=1&e=" + id;
-    $("ed-preview").href = "?e=" + id;
+function makeEvent(id, data) {
+  const t = data.theme || THEMES[Math.floor(Math.random()*THEMES.length)];
+  const imgPool = IMGS[t.replace("theme-","")] || IMGS.gold;
+  return {
+    theme: t,
+    kind: data.kind,
+    names: data.names,
+    dateISO: data.dateISO,
+    dateText: data.dateText,
+    venue: data.venue,
+    address: data.address,
+    videoYT: data.videoYT || "",
+    greet: data.greet,
+    cat: data.cat,
+    price: data.price || "4 900 ₸",
+    img: data.img || imgPool[Math.floor(Math.random()*imgPool.length)],
+    tag: data.tag || ""
   };
 }
-</script>
-</body>
-</html>
 
+const RAW = [
+  // === ЮБ
